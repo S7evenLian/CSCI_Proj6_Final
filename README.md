@@ -2,26 +2,26 @@
 
 ## Team name: 
 
-_ProCameramen_
+__ProCameramen__
 
 ## Team member: 
 
-_Kangping Hu_
+__Kangping Hu__
 
-_Xiaoyu Lian_
+__Xiaoyu Lian__
 
-_Junchi Chu_
+__Junchi Chu__
 
-_Yuchen Yang_
+__Yuchen Yang__
 
 ## Important dates:
 
-###Team + proposal: 10th Apr. 21:00
+__Team + proposal:__ 10th Apr. 21:00
 
-###Progress report 1: 17th Apr. 21:00
+__Progress report 1:__ 17th Apr. 21:00
 
-###Progress report 2: 24th Apr. 21:00
+__Progress report 2:__ 24th Apr. 21:00
 
-###Presentation: 4th May 15:00
+__Presentation:__ 4th May 15:00
 
-###Final submission: 8th May 21:00
+__Final submission:__ 8th May 21:00
