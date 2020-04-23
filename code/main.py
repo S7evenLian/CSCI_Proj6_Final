@@ -111,7 +111,7 @@ if __name__ == '__main__':
     # print('dst_xy_coord.shape\n',dst_xy_coord.shape)
     # print('img1.shape\n',img1.shape)
     # print('img2.shape\n',img2.shape)
-    result = stitch(img2, img1,dst_xy_coord, src_xy_coord, reprojThresh = 3.0)
+    result = stitch(img2, img1, dst_xy_coord, src_xy_coord, reprojThresh = 3.0)
 
     # steven: print out image
     plt.imshow(result),plt.show()
