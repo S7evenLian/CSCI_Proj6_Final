@@ -2,7 +2,6 @@ import cv2
 import numpy as np
 import sys
 import matplotlib.pyplot as plt
-
 from skimage import io 
 
 
@@ -59,8 +58,3 @@ if __name__ == '__main__':
     # convert the matched key points to xy coordinates
     src_xy_coord = np.float32([ kp1[m.queryIdx].pt for m in good ]).reshape(-1,2)
     dst_xy_coord = np.float32([ kp2[m.trainIdx].pt for m in good ]).reshape(-1,2)
-
-
-
-
-    
