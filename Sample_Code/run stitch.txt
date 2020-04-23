@@ -1,0 +1,6 @@
+
+cd C:\Users\a5354\Desktop\Research\Github\CSCI_Proj6_Final\Sample_Code
+
+python stitch.py --first ../data/panorama-data1/DSC01541.jpg --second ../data/panorama-data1/DSC01543.jpg
+
+python stitch.py --first ../data/trial_data1/test1.jpg --second ../data/trial_data1/test2.jpg
