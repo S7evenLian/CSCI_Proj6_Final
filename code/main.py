@@ -26,15 +26,24 @@ def FeatureWithSIFTorSURF(img1, img2, num_features, extract_func, ToPlot):
 
     # extract features with SIFT
     if extract_func is "SIFT":
+        num_features+=2000
         sift = cv2.xfeatures2d.SIFT_create(num_features)
         kp1, des1 = sift.detectAndCompute(img1, None)
         kp2, des2 = sift.detectAndCompute(img2, None)
+        print(len(kp1))
+        print(len(kp2))
+        print(des1.shape)
+        print(des2.shape)
 
     # extract features with SURF
     else:
         surf = cv2.xfeatures2d.SURF_create(num_features)
         kp1, des1 = surf.detectAndCompute(img1, None)
         kp2, des2 = surf.detectAndCompute(img2, None)
+        print(len(kp1))
+        print(len(kp2))
+        print(des1.shape)
+        print(des2.shape)
 
     # source code from https://docs.opencv.org/master/d1/de0/tutorial_py_feature_homography.html
     FLANN_INDEX_KDTREE = 1
@@ -98,7 +107,10 @@ if __name__ == '__main__':
     img2 = io.imread(img2_dir)
 
     # define the feature extraction method here
-    extract_func = "SURF"
+    extract_func = input("Enter a extrac function! Your choice: SIFT,SURF,ORB:")
+    while extract_func not in ['SIFT','ORB','SURF']:
+        extract_func = input("Enter a VALID extrac function! Your choice: SIFT,SURF,ORB:")
+    print("extract function is",extract_func)
 
     # define how many feature points we want to extract
     num_features = 20
