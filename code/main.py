@@ -23,13 +23,14 @@ def FindMatchedPoints(img1, img2, extract_func, num_features, ToPlot = False):
 
 # Extract Feature Pairs with SIFT/SURF + FLANN + RATIO TEST
 def FeatureWithSIFTorSURF(img1, img2, num_features, extract_func, ToPlot):
-
+    #print(type(extract_func),extract_func)
     # extract features with SIFT
-    if extract_func is "SIFT":
+    if extract_func == "SIFT":
         num_features+=2000
         sift = cv2.xfeatures2d.SIFT_create(num_features)
         kp1, des1 = sift.detectAndCompute(img1, None)
         kp2, des2 = sift.detectAndCompute(img2, None)
+      
 
 
     # extract features with SURF
@@ -37,6 +38,7 @@ def FeatureWithSIFTorSURF(img1, img2, num_features, extract_func, ToPlot):
         surf = cv2.xfeatures2d.SURF_create(num_features)
         kp1, des1 = surf.detectAndCompute(img1, None)
         kp2, des2 = surf.detectAndCompute(img2, None)
+        
 
 
     # source code from https://docs.opencv.org/master/d1/de0/tutorial_py_feature_homography.html
@@ -108,6 +110,7 @@ if __name__ == '__main__':
 
     # define how many feature points we want to extract
     num_features = 20
+    
 
     # get the xy coordinated of the matched pairs
     src_xy_coord, dst_xy_coord = FindMatchedPoints(img1, img2, extract_func, num_features, ToPlot = True)
