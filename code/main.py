@@ -97,10 +97,14 @@ if __name__ == '__main__':
 
     # load image
     img1_dir = '../data/panorama-data1/DSC01538.JPG'
-    img2_dir = '../data/panorama-data1/DSC01540.JPG'
+    img2_dir = '../data/panorama-data1/DSC01539.JPG'
+    img3_dir = '../data/panorama-data1/DSC01540.JPG'
+    img4_dir = '../data/panorama-data1/DSC01541.JPG'
 
     img1 = io.imread(img1_dir)
     img2 = io.imread(img2_dir)
+    img3 = io.imread(img3_dir)
+    img4 = io.imread(img4_dir)
 
     # define the feature extraction method here
     extract_func = input("Enter a extrac function! Your choice: SIFT,SURF,ORB:")
@@ -123,4 +127,14 @@ if __name__ == '__main__':
     result,covered = stitch(img2, img1, dst_xy_coord, src_xy_coord, reprojThresh = 3.0)
 
     # steven: print out image
+    plt.imshow(result),plt.show()
+
+    src_xy_coord, dst_xy_coord = FindMatchedPoints(result, img3, extract_func, num_features, ToPlot = True)
+    result,covered = stitch(result, img3, dst_xy_coord, src_xy_coord, reprojThresh = 3.0)
+
+    plt.imshow(result),plt.show()
+
+    src_xy_coord, dst_xy_coord = FindMatchedPoints(result, img4, extract_func, num_features, ToPlot = True)
+    result,covered = stitch(result, img4, dst_xy_coord, src_xy_coord, reprojThresh = 3.0)
+
     plt.imshow(result),plt.show()
