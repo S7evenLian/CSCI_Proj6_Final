@@ -15,4 +15,5 @@ def stitch(imageA, imageB, ptsA, ptsB, reprojThresh):
     covered = stitched_image[0:imageB.shape[0], 0:imageB.shape[1]]
     stitched_image[0:imageB.shape[0], 0:imageB.shape[1]] = imageB
     
-    return stitched_image, covered
+    return stitched_image, 
+    
