@@ -130,11 +130,11 @@ if __name__ == '__main__':
     plt.imshow(result),plt.show()
 
     src_xy_coord, dst_xy_coord = FindMatchedPoints(result, img3, extract_func, num_features, ToPlot = True)
-    result,covered = stitch(result, img3, dst_xy_coord, src_xy_coord, reprojThresh = 3.0)
+    result,covered = stitch( img3, result, dst_xy_coord, src_xy_coord, reprojThresh = 3.0)
 
     plt.imshow(result),plt.show()
 
     src_xy_coord, dst_xy_coord = FindMatchedPoints(result, img4, extract_func, num_features, ToPlot = True)
-    result,covered = stitch(result, img4, dst_xy_coord, src_xy_coord, reprojThresh = 3.0)
+    result,covered = stitch(img4, result, dst_xy_coord, src_xy_coord, reprojThresh = 3.0)
 
     plt.imshow(result),plt.show()
