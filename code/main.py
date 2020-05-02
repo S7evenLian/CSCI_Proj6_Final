@@ -117,25 +117,25 @@ if __name__ == '__main__':
     
 
     # get the xy coordinated of the matched pairs
-    src_xy_coord, dst_xy_coord = FindMatchedPoints(img1, img2, extract_func, num_features, ToPlot = True)
+    src_xy_coord, dst_xy_coord = FindMatchedPoints(img3, img4, extract_func, num_features, ToPlot = True)
 
     # steven: try to stitch
     # print('src_xy_coord.shape\n',src_xy_coord.shape)
     # print('dst_xy_coord.shape\n',dst_xy_coord.shape)
     # print('img1.shape\n',img1.shape)
     # print('img2.shape\n',img2.shape)
-    result,covered = stitch(img2, img1, dst_xy_coord, src_xy_coord, reprojThresh = 3.0)
+    result,covered = stitch(img4, img3, dst_xy_coord, src_xy_coord, reprojThresh = 3.0)
 
     # steven: print out image
     plt.imshow(result),plt.show()
 
-    src_xy_coord, dst_xy_coord = FindMatchedPoints(result, img3, extract_func, num_features, ToPlot = True)
-    result,covered = stitch( result, img3, dst_xy_coord, src_xy_coord, reprojThresh = 3.0)
+    src_xy_coord, dst_xy_coord = FindMatchedPoints( img2, result, extract_func, num_features, ToPlot = True)
+    result,covered = stitch( result, img2, dst_xy_coord, src_xy_coord, reprojThresh = 3.0)
     # result,covered = stitch( result, img3, src_xy_coord, dst_xy_coord, reprojThresh = 3.0)
 
     plt.imshow(result),plt.show()
 
-    src_xy_coord, dst_xy_coord = FindMatchedPoints(result, img4, extract_func, num_features, ToPlot = True)
-    result,covered = stitch(result, img4, dst_xy_coord, src_xy_coord, reprojThresh = 3.0)
+    src_xy_coord, dst_xy_coord = FindMatchedPoints( img1, result, extract_func, num_features, ToPlot = True)
+    result,covered = stitch(result, img1, dst_xy_coord, src_xy_coord, reprojThresh = 3.0)
 
     plt.imshow(result),plt.show()
