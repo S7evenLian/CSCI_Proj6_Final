@@ -108,7 +108,7 @@ if __name__ == '__main__':
     img4 = io.imread(img4_dir)
 
     # define the feature extraction method here
-    extract_func = input("Enter a extrac function! Your choice: SIFT,SURF,ORB:")
+    extract_func = input("Enter a extrac function! Your choice: SIFT,SURF,ORB: ")
     while extract_func not in ['SIFT','ORB','SURF']:
         extract_func = input("Enter a VALID extrac function! Your choice: SIFT,SURF,ORB:")
     print("extract function is",extract_func)
