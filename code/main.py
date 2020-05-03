@@ -92,6 +92,19 @@ def FeatureWithORB(img1, img2, num_features, ToPlot):
 
     return src_xy_coord, dst_xy_coord
 
+def refine_image(saiko):
+    print(img1.shape)
+    left_y=int(img1.shape[1]*0.5)
+    image_slice1=img1[:,0:left_y,:]
+    image_slice2=img1[:,left_y:img1.shape[1],:]
+    width = img1.shape[0]
+    height = int((img1.shape[1]-left_y)/3)
+    dim = (height,width)
+    resized = cv2.resize(image_slice2, dim, interpolation = cv2.INTER_AREA)
+# print(image_slice1.shape)
+# print(resized.shape)
+    new_im=np.concatenate((image_slice1,resized),axis=1)
+    return new_im
 
 if __name__ == '__main__':
 
@@ -183,3 +196,6 @@ if __name__ == '__main__':
         src_xy_coord, dst_xy_coord = FindMatchedPoints(img, result,  extract_func, num_features, ToPlot = True)
         result,covered = stitch(result, img, dst_xy_coord, src_xy_coord, reprojThresh = 3.0)
         plt.imshow(result),plt.show()
+    
+ 
+
