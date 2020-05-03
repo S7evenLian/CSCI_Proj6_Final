@@ -196,6 +196,10 @@ if __name__ == '__main__':
         src_xy_coord, dst_xy_coord = FindMatchedPoints(img, result,  extract_func, num_features, ToPlot = True)
         result,covered = stitch(result, img, dst_xy_coord, src_xy_coord, reprojThresh = 3.0)
         plt.imshow(result),plt.show()
+    print(result.shape,"result")
+    result=refine_image(result)
+    plt.imshow(result)
+    plt.show()
     
  
 
