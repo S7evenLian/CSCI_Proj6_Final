@@ -92,7 +92,7 @@ def FeatureWithORB(img1, img2, num_features, ToPlot):
 
     return src_xy_coord, dst_xy_coord
 
-def refine_image(saiko):
+def refine_image(img1):
     print(img1.shape)
     left_y=int(img1.shape[1]*0.5)
     image_slice1=img1[:,0:left_y,:]
