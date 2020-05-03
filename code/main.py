@@ -1,4 +1,5 @@
 import cv2
+import os
 import numpy as np
 import sys
 import matplotlib.pyplot as plt
@@ -97,10 +98,10 @@ if __name__ == '__main__':
     ######################################
     # load test image panorama-data1
     ######################################
-    img1_dir = '../data/panorama-data1/DSC01538.JPG'
-    img2_dir = '../data/panorama-data1/DSC01539.JPG'
-    img3_dir = '../data/panorama-data1/DSC01540.JPG'
-    img4_dir = '../data/panorama-data1/DSC01541.JPG'
+    img1_dir = '../data/panorama-data1/d (3).JPG'
+    img2_dir = '../data/panorama-data1/d (4).JPG'
+    img3_dir = '../data/panorama-data1/d (5).JPG'
+    img4_dir = '../data/panorama-data1/d (6).JPG'
 
     img1 = io.imread(img1_dir)
     img2 = io.imread(img2_dir)
@@ -130,21 +131,55 @@ if __name__ == '__main__':
     # plt.imshow(result),plt.show()
 
     ######################################
-    # load another set of image, flowers
+    # load another set of image
     ######################################
+    
+    # img_dir = ['../data/road view/1.JPG']
+    # img_dir.append('../data/road view/2.JPG')
+    # img_dir.append('../data/road view/3.JPG')
+    # img_dir.append('../data/road view/4.JPG')
+    # image_cnt = len(img_dir) 
 
-    # for hoirzontal panarama, the image set goes from right to left
-    img_dir = ['../data/road view/1.JPG']
-    img_dir.append('../data/road view/2.JPG')
-    img_dir.append('../data/road view/3.5.JPG')
-    img_dir.append('../data/road view/3.JPG')
+    # # for hoirzontal panarama, the image set goes from right to left
+    # for i in range(image_cnt-1):
+    #     img = io.imread(img_dir[image_cnt - i - 2])
+    #     if i == 0:
+    #         result = io.imread(img_dir[image_cnt - i - 1])
+    #     src_xy_coord, dst_xy_coord = FindMatchedPoints(img, result,  extract_func, num_features, ToPlot = True)
+    #     result,covered = stitch(result, img, dst_xy_coord, src_xy_coord, reprojThresh = 3.0)
+    #     plt.imshow(result),plt.show()
 
+
+    ######################################
+    # load another set of image, using code from George
+    ######################################
+    photo_cat=['bridge','car','flowers','greens','house and road','road view','sofa','TV','house1','trial_data1','panorama-data1','panorama-data2']
+    parainput=input("Pick one: bridge/ car/ greens/ house&road/ road view/ sofa / TV / house1 / trial_data1/ panorama-data 1&2: ")
+    while parainput not in photo_cat:
+        parainput = input("Pick A VALID one: bridge/ car/ greens/ house&road/ road view/ sofa / TV / house1 / trial_data1/ panorama-data 1&2::")
+    print("You select [",parainput,"] as input")
+
+    # initialize string list
+    img_dir = []
+
+    # read all the image in the folder
+    directory = r"../data/"+parainput
+    for filename in os.listdir(directory):
+        if filename.endswith(".jpg") or filename.endswith(".png"):
+            #print("sssss")
+            print(os.path.join(directory, filename))
+            img_dir.append(os.path.join(directory, filename))
+        else:
+            continue
+    
+    # print out the number of images
     image_cnt = len(img_dir) 
+    print("No. of images read in:",image_cnt)
 
     for i in range(image_cnt-1):
-        img = io.imread(img_dir[image_cnt - i - 1])
+        img = io.imread(img_dir[image_cnt - i - 2])
         if i == 0:
-            result = io.imread(img_dir[image_cnt - i - 2])
-        src_xy_coord, dst_xy_coord = FindMatchedPoints(result, img, extract_func, num_features, ToPlot = True)
-        result,covered = stitch(img, result, dst_xy_coord, src_xy_coord, reprojThresh = 3.0)
+            result = io.imread(img_dir[image_cnt - i - 1])
+        src_xy_coord, dst_xy_coord = FindMatchedPoints(img, result,  extract_func, num_features, ToPlot = True)
+        result,covered = stitch(result, img, dst_xy_coord, src_xy_coord, reprojThresh = 3.0)
         plt.imshow(result),plt.show()
