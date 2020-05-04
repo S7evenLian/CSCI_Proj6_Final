@@ -4,8 +4,7 @@ import numpy as np
 import sys
 import matplotlib.pyplot as plt
 from skimage import io 
-from stitch import stitch
-from stitch import stitch_left
+from stitch import *
 
 def FindMatchedPoints(img1, img2, extract_func, num_features, ToPlot = False):
 
@@ -133,10 +132,11 @@ if __name__ == '__main__':
 
     # get the xy coordinated of the matched pairs
 
-    # src_xy_coord, dst_xy_coord = FindMatchedPoints(img4, img2, extract_func, num_features, ToPlot = True)
+    # src_xy_coord, dst_xy_coord = FindMatchedPoints(img2, img4, extract_func, num_features, ToPlot = True)
     # result,covered = stitch_left(img4, img2, dst_xy_coord, src_xy_coord, reprojThresh = 3.0)
+    # # result = stitch2(img2, img4, dst_xy_coord, src_xy_coord, reprojThresh = 3.0)
+    # print(result)
     # plt.imshow(result),plt.show()
-
     # print(fffff)
 
     # src_xy_coord, dst_xy_coord = FindMatchedPoints( img2, result, extract_func, num_features, ToPlot = True)
@@ -198,7 +198,7 @@ if __name__ == '__main__':
         if i == 0:
             result = io.imread(img_dir[image_cnt - i - 1])
         src_xy_coord, dst_xy_coord = FindMatchedPoints(img, result,  extract_func, num_features, ToPlot = True)
-        result,covered = stitch(result, img, dst_xy_coord, src_xy_coord, reprojThresh = 3.0)
+        result,covered = stitch(result, img, dst_xy_coord, src_xy_coord, reprojThresh = 1.0)
         plt.imshow(result),plt.show()
     print(result.shape,"result")
     result=refine_image(result)
