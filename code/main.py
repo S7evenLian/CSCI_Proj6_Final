@@ -5,6 +5,7 @@ import sys
 import matplotlib.pyplot as plt
 from skimage import io 
 from stitch import stitch
+from stitch import stitch_left
 
 def FindMatchedPoints(img1, img2, extract_func, num_features, ToPlot = False):
 
@@ -131,9 +132,12 @@ if __name__ == '__main__':
     num_features = 20
 
     # get the xy coordinated of the matched pairs
-    # src_xy_coord, dst_xy_coord = FindMatchedPoints(img3, img4, extract_func, num_features, ToPlot = True)
-    # result,covered = stitch(img4, img3, dst_xy_coord, src_xy_coord, reprojThresh = 3.0)
+
+    # src_xy_coord, dst_xy_coord = FindMatchedPoints(img4, img2, extract_func, num_features, ToPlot = True)
+    # result,covered = stitch_left(img4, img2, dst_xy_coord, src_xy_coord, reprojThresh = 3.0)
     # plt.imshow(result),plt.show()
+
+    # print(fffff)
 
     # src_xy_coord, dst_xy_coord = FindMatchedPoints( img2, result, extract_func, num_features, ToPlot = True)
     # result,covered = stitch( result, img2, dst_xy_coord, src_xy_coord, reprojThresh = 3.0)
@@ -164,12 +168,19 @@ if __name__ == '__main__':
 
 
     ######################################
-    # load another set of image, using code from George
+    # load another set of image, using laoding code from George
     ######################################
+<<<<<<< HEAD
     photo_cat=['bridge','car','flowers','greens','house and road','road view','sofa','TV','house2','house1','trial_data1','panorama-data1','panorama-data2']
     parainput=input("Pick one: bridge/ car/ greens/ house&road/ road view/ house2/ sofa / TV / flowers/ house1 / trial_data1/ panorama-data 1&2: ")
     while parainput not in photo_cat:
         parainput = input("Pick A VALID one: bridge/ car/ greens/ house&road/ house2/ road view/  flowers/ sofa / TV / house1 / trial_data1/ panorama-data 1&2::")
+=======
+    photo_cat=['bridge','car','flowers','greens','house and road','road view','sofa','TV','house1','trial_data1','panorama-data1','panorama-data2','kp_image']
+    parainput=input("Pick one: bridge/ car/ greens/ house&road/ road view/ sofa / TV / house1 / trial_data1/ panorama-data 1&2/ kp_image: ")
+    while parainput not in photo_cat:
+        parainput = input("Pick A VALID one: bridge/ car/ greens/ house&road/ road view/ sofa / TV / house1 / trial_data1/ panorama-data 1&2/ kp_image::")
+>>>>>>> 8a3ce4cdb2258a5983100aacce92b014d169e568
     print("You select [",parainput,"] as input")
 
     # initialize string list
