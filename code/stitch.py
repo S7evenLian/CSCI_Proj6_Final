@@ -15,7 +15,7 @@ def stitch(imageA, imageB, ptsA, ptsB, reprojThresh):
 
     # stitching 2 images
     stitched_image = cv2.warpPerspective(imageA, H, (imageA.shape[1] + imageB.shape[1], imageA.shape[0]))
-    plt.imshow(stitched_image),plt.show()
+    #plt.imshow(stitched_image),plt.show()
     covered = stitched_image[0:imageB.shape[0], 0:imageB.shape[1]]
     stitched_image[0:imageB.shape[0], 0:imageB.shape[1]] = imageB
     

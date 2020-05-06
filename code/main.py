@@ -61,7 +61,7 @@ def FeatureWithSIFTorSURF(img1, img2, num_features, extract_func, ToPlot):
     # optionally plot the two images
     if(ToPlot):
         img3 = cv2.drawMatches(img1,kp1,img2,kp2,good,None)
-        plt.imshow(img3, 'gray'),plt.show()
+        #plt.imshow(img3, 'gray'),plt.show()
 
     return src_xy_coord, dst_xy_coord
 
@@ -88,7 +88,7 @@ def FeatureWithORB(img1, img2, num_features, ToPlot):
     # optionally plot the two images
     if(ToPlot):
         img3 = cv2.drawMatches(img1,kp1,img2,kp2,matches,None)
-        plt.imshow(img3, 'gray'),plt.show()
+        #plt.imshow(img3, 'gray'),plt.show()
 
     return src_xy_coord, dst_xy_coord
 
@@ -111,15 +111,15 @@ if __name__ == '__main__':
     ######################################
     # load test image panorama-data1
     ######################################
-    img1_dir = '../data/panorama-data1/d (3).JPG'
-    img2_dir = '../data/panorama-data1/d (4).JPG'
-    img3_dir = '../data/panorama-data1/d (5).JPG'
-    img4_dir = '../data/panorama-data1/d (6).JPG'
+    #img1_dir = '../data/panorama-data1/d (3).JPG'
+    #img2_dir = '../data/panorama-data1/d (4).JPG'
+    #img3_dir = '../data/panorama-data1/d (5).JPG'
+    #img4_dir = '../data/panorama-data1/d (6).JPG'
 
-    img1 = io.imread(img1_dir)
-    img2 = io.imread(img2_dir)
-    img3 = io.imread(img3_dir)
-    img4 = io.imread(img4_dir)
+    #img1 = io.imread(img1_dir)
+    #img2 = io.imread(img2_dir)
+    #img3 = io.imread(img3_dir)
+    #img4 = io.imread(img4_dir)
 
     # define the feature extraction method here
     extract_func = input("Enter a extrac function! Your choice: SIFT,SURF,ORB: ")
@@ -170,10 +170,10 @@ if __name__ == '__main__':
     ######################################
     # load another set of image, using laoding code from George
     ######################################
-    photo_cat=['bridge','car','flowers','greens','house and road','road view','sofa','TV','house1','trial_data1','panorama-data1','panorama-data2','kp_image']
-    parainput=input("Pick one: bridge/ car/ greens/ house&road/ road view/ sofa / TV / house1 / trial_data1/ panorama-data 1&2/ kp_image: ")
+    photo_cat=['bridge','car','flowers','greens','house1','house2','HouseAndRoad','RoadView','sofa','TV','house1','trial_data1','panorama-data1','panorama-data2','kp_image','waterman']
+    parainput=input("Pick one: bridge/ car/ flowers/ greens/ house1/ house2/ HouseAndRoad/ RoadView/ sofa / TV / house1 / trial_data1/ panorama-data1/ panorama-data2/ kp_image/ waterman: ")
     while parainput not in photo_cat:
-        parainput = input("Pick A VALID one: bridge/ car/ greens/ house&road/ road view/ sofa / TV / house1 / trial_data1/ panorama-data 1&2/ kp_image::")
+        parainput=input("Pick A VALID one: bridge/ car/ flowers/ greens/ house1/ house2/ HouseAndRoad/ RoadView/ sofa / TV / house1 / trial_data1/ panorama-data1/ panorama-data2/ kp_image/ waterman:: ")
     print("You select [",parainput,"] as input")
 
     # initialize string list
@@ -181,8 +181,10 @@ if __name__ == '__main__':
 
     # read all the image in the folder
     directory = r"../data/"+parainput
-    for filename in os.listdir(directory):
-        if filename.endswith(".jpg") or filename.endswith(".png"):
+    lst = os.listdir(directory)
+    lst.sort()
+    for filename in lst:
+        if filename.endswith(".jpg") or filename.endswith(".png") or filename.endswith(".JPG"):
             #print("sssss")
             print(os.path.join(directory, filename))
             img_dir.append(os.path.join(directory, filename))
@@ -199,7 +201,7 @@ if __name__ == '__main__':
             result = io.imread(img_dir[image_cnt - i - 1])
         src_xy_coord, dst_xy_coord = FindMatchedPoints(img, result,  extract_func, num_features, ToPlot = True)
         result,covered = stitch(result, img, dst_xy_coord, src_xy_coord, reprojThresh = 1.0)
-        plt.imshow(result),plt.show()
+        #plt.imshow(result),plt.show()
     print(result.shape,"result")
     result=refine_image(result)
     plt.imshow(result)
