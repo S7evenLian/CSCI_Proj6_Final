@@ -61,7 +61,7 @@ def FeatureWithSIFTorSURF(img1, img2, num_features, extract_func, ToPlot):
     # optionally plot the two images
     if(ToPlot):
         img3 = cv2.drawMatches(img1,kp1,img2,kp2,good,None)
-        plt.imshow(img3, 'gray'),plt.show()
+        #plt.imshow(img3, 'gray'),plt.show()
 
     return src_xy_coord, dst_xy_coord
 
@@ -88,23 +88,30 @@ def FeatureWithORB(img1, img2, num_features, ToPlot):
     # optionally plot the two images
     if(ToPlot):
         img3 = cv2.drawMatches(img1,kp1,img2,kp2,matches,None)
-        plt.imshow(img3, 'gray'),plt.show()
+        #plt.imshow(img3, 'gray'),plt.show()
 
     return src_xy_coord, dst_xy_coord
 
-def refine_image(img1):
-    print(img1.shape)
-    left_y=int(img1.shape[1]*0.5)
-    image_slice1=img1[:,0:left_y,:]
-    image_slice2=img1[:,left_y:img1.shape[1],:]
-    width = img1.shape[0]
-    height = int((img1.shape[1]-left_y)/3)
-    dim = (height,width)
-    resized = cv2.resize(image_slice2, dim, interpolation = cv2.INTER_AREA)
-# print(image_slice1.shape)
-# print(resized.shape)
-    new_im=np.concatenate((image_slice1,resized),axis=1)
-    return new_im
+def refine_image(img, width):
+    (_, mask) = cv2.threshold(img, 1.0, 255.0, cv2.THRESH_BINARY_INV);
+    temp = mask.copy()
+    temp = cv2.cvtColor(temp, cv2.COLOR_BGR2GRAY)
+    (_, contours, _) = cv2.findContours(temp, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    contours = sorted(contours, key=lambda contour:len(contour), reverse=True)
+    roi = cv2.boundingRect(contours[0])
+    if roi[0] > width:
+        result = img[:, :roi[0], :]
+    else:
+        result = img
+    plt.imshow(result), plt.show()
+    return result
+
+# sort contours by largest first (if there are more than one)
+    contours = sorted(contours, key=lambda contour:len(contour), reverse=True)
+    roi = cv2.boundingRect(contours[0])
+    result = img1[:, roi[0]:roi[2], :]
+    plt.imshow(result), plt.show()
+    return result
 
 if __name__ == '__main__':
 
@@ -195,18 +202,22 @@ if __name__ == '__main__':
     image_cnt = len(img_dir) 
     print("No. of images read in:",image_cnt)
 
-    for i in range(image_cnt-1):
-        img = io.imread(img_dir[image_cnt - i - 2])
+    for i in range(image_cnt):
         if i == 0:
-            result = io.imread(img_dir[image_cnt - i - 1])
-        src_xy_coord, dst_xy_coord = FindMatchedPoints(img, result,  extract_func, num_features, ToPlot = True)
-        result,covered = stitch(result, img, dst_xy_coord, src_xy_coord, reprojThresh = 1.0)
+            result = io.imread(img_dir[i])
+            continue
+        img = io.imread(img_dir[i])
+        width = result.shape[1]
+        src_xy_coord, dst_xy_coord = FindMatchedPoints(result, img,  extract_func, num_features, ToPlot = True)
+        result,covered = stitch(img, result, dst_xy_coord, src_xy_coord, reprojThresh = 1.0)
+        plt.imshow(result), plt.show()
+        result=refine_image(result, width)
         #plt.imshow(result),plt.show()
     print(result.shape,"result")
-    result=refine_image(result)
+    #result=refine_image(result)
     plt.imshow(result)
     #plt.show()
-    plt.savefig(directory+"/result.PNG")
+    plt.savefig(directory+"/myresult.PNG")
     
  
 
