@@ -4,7 +4,7 @@ import numpy as np
 import sys
 import matplotlib.pyplot as plt
 from skimage import io 
-from stitch import *
+from mystitch import *
 
 def FindMatchedPoints(img1, img2, extract_func, num_features, ToPlot = False):
 
@@ -61,7 +61,7 @@ def FeatureWithSIFTorSURF(img1, img2, num_features, extract_func, ToPlot):
     # optionally plot the two images
     if(ToPlot):
         img3 = cv2.drawMatches(img1,kp1,img2,kp2,good,None)
-        plt.imshow(img3, 'gray'),plt.show()
+        #plt.imshow(img3, 'gray'),plt.show()
 
     return src_xy_coord, dst_xy_coord
 
@@ -88,7 +88,7 @@ def FeatureWithORB(img1, img2, num_features, ToPlot):
     # optionally plot the two images
     if(ToPlot):
         img3 = cv2.drawMatches(img1,kp1,img2,kp2,matches,None)
-        plt.imshow(img3, 'gray'),plt.show()
+        #plt.imshow(img3, 'gray'),plt.show()
 
     return src_xy_coord, dst_xy_coord
 

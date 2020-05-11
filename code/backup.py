@@ -4,7 +4,7 @@ import numpy as np
 import sys
 import matplotlib.pyplot as plt
 from skimage import io 
-from stitch import *
+from mystitch import *
 
 def FindMatchedPoints(img1, img2, extract_func, num_features, ToPlot = False):
 
@@ -209,7 +209,7 @@ if __name__ == '__main__':
         img = io.imread(img_dir[i])
         width = result.shape[1]
         src_xy_coord, dst_xy_coord = FindMatchedPoints(result, img,  extract_func, num_features, ToPlot = True)
-        result,covered = stitch(img, result, dst_xy_coord, src_xy_coord, reprojThresh = 1.0)
+        result = stitch(img, result, dst_xy_coord, src_xy_coord, reprojThresh = 1.0)
         plt.imshow(result), plt.show()
         result=refine_image(result, width)
         #plt.imshow(result),plt.show()
