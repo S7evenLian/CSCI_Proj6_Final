@@ -4,7 +4,7 @@ import numpy as np
 import sys
 import matplotlib.pyplot as plt
 from skimage import io 
-from mystitch import *
+from stitch import *
 
 def FindMatchedPoints(img1, img2, extract_func, num_features, ToPlot = False):
 
