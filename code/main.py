@@ -170,10 +170,10 @@ if __name__ == '__main__':
     ######################################
     # load another set of image, using laoding code from George
     ######################################
-    photo_cat=['bridge','car','flowers','greens','house1','house2','HouseAndRoad','RoadView','sofa','TV','house1','trial_data1','panorama-data1','panorama-data2','kp_image','waterman']
-    parainput=input("Pick one: bridge/ car/ flowers/ greens/ house1/ house2/ HouseAndRoad/ RoadView/ sofa / TV / house1 / trial_data1/ panorama-data1/ panorama-data2/ kp_image/ waterman: ")
+    photo_cat=['car','flowers','greens','house2','HouseAndRoad','RoadView','sofa','TV','trial_data1','panorama-data1','panorama-data2']
+    parainput=input("Pick one: car/ flowers/ greens/ house2/ HouseAndRoad/ RoadView/ sofa/ TV/ trial_data1/ panorama-data1/ panorama-data2: ")
     while parainput not in photo_cat:
-        parainput=input("Pick A VALID one: bridge/ car/ flowers/ greens/ house1/ house2/ HouseAndRoad/ RoadView/ sofa / TV / house1 / trial_data1/ panorama-data1/ panorama-data2/ kp_image/ waterman:: ")
+        parainput=input("Pick A VALID one: car/ flowers/ greens/ house2/ HouseAndRoad/ RoadView/ sofa / TV / trial_data1/ panorama-data1/ panorama-data2: ")
     print("You select [",parainput,"] as input")
 
     # initialize string list
