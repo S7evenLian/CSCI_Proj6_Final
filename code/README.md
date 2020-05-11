@@ -14,3 +14,6 @@ The output figure is redirected to the corresponding data folder. For example, "
 main.py includes the functions of the UI, feature extraction and image refinement.
 
 stitch.py includes the process of image stitching and seam blending.
+
+The supported versions for packages(pip): python==3.7, opencv-contrib-python==3.4.2.16
+For anaconda: opencv==3.2.0, python==3.5.6
