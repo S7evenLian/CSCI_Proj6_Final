@@ -25,3 +25,12 @@ __Progress report 2:__ 24th Apr. 21:00
 __Presentation:__ 4th May 15:00
 
 __Final submission:__ 8th May 21:00
+
+## Folders:
+Code and instructions to run is in __code__
+
+Result figures are in __results__
+
+__Data__ includes the dataset
+
+
